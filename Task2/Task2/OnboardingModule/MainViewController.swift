@@ -29,6 +29,7 @@ class MainViewController: BaseViewController {
     }
 
     @IBAction func onStartTapped(_ sender: UIButton) {
+        // validate the value else show error alerts
         guard Int(textfieldNumber.text ?? "") != nil else {
             self.showAlert(title: "Alert!!", description: "Please Enter a valid Number", primaryAction: ("OK", nil))
             return

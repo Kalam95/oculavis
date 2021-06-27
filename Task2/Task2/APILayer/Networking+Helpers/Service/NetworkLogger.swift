@@ -7,8 +7,11 @@
 
 import Foundation
 
+/// Class to log network calls and reqpose
 public class NetworkLogger {
 
+    
+    ///  check should log network calls or not
     private static var isLoggingEnabled: Bool {
         #if DEBUG
         return true
@@ -17,6 +20,9 @@ public class NetworkLogger {
         #endif
     }
 
+    
+    /// Methdo to log request and its parameters in a easy to read format
+    /// - Parameter request: request to be printed
     static func log(request: URLRequest) {
         if NetworkLogger.isLoggingEnabled {
         print("\n - - - - - - - - - - OUTGOING - - - - - - - - - - \n")
@@ -46,6 +52,8 @@ public class NetworkLogger {
     }
 }
 
+    /// Methdo to log API response and its parameters in a easy to read format
+    /// - Parameter request: response or data to be printed
     static func log(response: HTTPURLResponse, data: Data?) {
         if NetworkLogger.isLoggingEnabled {
         print("\n-----------------Response start------------------\n")
@@ -54,6 +62,9 @@ public class NetworkLogger {
         }
     }
 
+    
+    /// Method to log erros
+    /// - Parameter error: error to be printed
     static func log(error: Error?) {
         if NetworkLogger.isLoggingEnabled {
         print("\n-----------------Response start------------------\n")

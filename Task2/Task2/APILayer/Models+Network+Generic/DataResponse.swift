@@ -7,6 +7,9 @@
 
 import Foundation
 
+
+///**Note:** I do not knwo the contract as of now so i just created it to showcase, and hence its not used in thsi app
+/// A generic Data response, on the basis of API contract with frontend and server
 struct DataResponse<ResponseType: Decodable>: Decodable {
     var data: ResponseType?
     let status: String?

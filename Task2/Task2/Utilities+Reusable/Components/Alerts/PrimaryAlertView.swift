@@ -5,7 +5,11 @@
 //  Created by mehboob Alam.
 //
 import  UIKit
-
+///**NOTE:** This si the specific alert with 2 buttons only, however just lil bit of cahneg in code can make it for multiple
+/** An alert class to show error, it can have 2 actions
+ - Primary: main and colored button
+ - Secondary: outlined and low priority action
+*/
 open class PrimaryAlertView: UIView {
 
     public typealias Action = (title: String, completion: (() -> Void)?)
@@ -28,7 +32,7 @@ open class PrimaryAlertView: UIView {
 
     private func setupView() {
         fromNib(type: Self.self)
-        mainContainerView.applyDropShadow(radius: 20)
+        mainContainerView.applyDropShadow(radius: 20) // an expensive and dynamic shadow.
         mainContainerView.roundedBorders(radius: 20)
         backgroundColor = .clear
         headingLabel.textColor = UIColor.black

@@ -7,6 +7,9 @@
 
 import UIKit
 
+
+/// Button for seconday[Outlined] actiosn handling, its is a bordered button with colored text
+/// properties are self descriptive
 public class SecondaryButton: UIButton {
 
     public var title: String? {

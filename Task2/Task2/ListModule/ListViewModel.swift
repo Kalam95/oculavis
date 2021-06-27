@@ -22,7 +22,7 @@ class ListViewModel {
     }
 
     deinit {
-        holder = nil
+        holder = nil// in case of RxSwift and combine it is not requred as they handles it in them only
     }
 
     func sendRequest() {

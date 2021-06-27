@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Colors' exentions for making colors easy and multiple times to be used, each color Entity is self descriptive
 extension UIColor {
     
     // This function returns a pre-defined UIColor for all kind of type strings that PokeAPI returns

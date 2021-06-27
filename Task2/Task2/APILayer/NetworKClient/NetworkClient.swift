@@ -7,6 +7,10 @@
 
 import Foundation
 
+
+/***
+ Its a Protocol, providing the standared for the Newtork call, it contains methods for most common apis request/method types. This protocal makes the Network layer testable.
+ */
 public protocol NetworkClientType {
     func getRequest<ResponseType: Decodable>(path: String, parameters: [String: String]) -> PublishSubject<ResponseType>
 
@@ -17,6 +21,11 @@ public protocol NetworkClientType {
     func deleteRequest<ResponseType: Decodable>(path: String, parameters: [String: String]) -> PublishSubject<ResponseType>
 }
 
+/**
+ Network class conferming all the network mothds for all HTTPs request types
+ - It is generic isn nature, but restricted to the Decodable types.
+ - **Note:** It uses URL session and data task for that, Websocke can also be used.
+*/
 public class NetworkClient: NSObject, NetworkClientType {
 
     var task: URLSessionTask?
@@ -39,7 +48,12 @@ public class NetworkClient: NSObject, NetworkClientType {
     public func deleteRequest<ResponseType: Decodable>(path: String, parameters: [String: String]) -> PublishSubject<ResponseType> {
         sendRequest(request: buildRequest(path: path, httpMethod: .delete, urlParameters: parameters))
     }
-
+    
+    /// Method to send request using URL session, This methods sends the request and parse the data,
+    /// and in case of error it reports it exactly.
+    /// - Note: 1. Its a generic function.
+    /// - Parameter request: URLrequest coanting, body of the request, headers, urls etcs
+    /// - Returns: the response Observer(publisher), whoich will emot value[api data] or error on the bases of api completion status.
     public func sendRequest<ResponseType: Decodable>(request: URLRequest) -> PublishSubject<ResponseType> {
         if session == nil {
             session = URLSession.shared
@@ -72,6 +86,7 @@ public class NetworkClient: NSObject, NetworkClientType {
                         return
                     }
                     do {
+                        // parsing data
                         let type = ResponseType.self
                         let apiResponse = try JSONDecoder().decode(type, from: responseData)
                         responseSubject.onNext(apiResponse)
@@ -91,6 +106,14 @@ public class NetworkClient: NSObject, NetworkClientType {
         return responseSubject
     }
 
+    
+    /// Method to create the api Request
+    /// - Parameters:
+    ///   - path: url path for the server
+    ///   - httpMethod: type of request, get or post or any other
+    ///   - urlParameters: if url parameters are qured such as query
+    ///   - body: body of the HTTP request(jOSON request data object)
+    /// - Returns:URL request from the passed parameters
     private func buildRequest(
         path: String,
         httpMethod: HTTPMethod = .get,
@@ -112,6 +135,8 @@ public class NetworkClient: NSObject, NetworkClientType {
         return request
     }
 
+    
+    /// If required, then we can cancel the on coing request suing this.
     public func cancel() {
         self.task?.cancel()
     }

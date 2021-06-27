@@ -137,6 +137,15 @@
 			path = "Support Files";
 			sourceTree = "<group>";
 		};
+		97AC80582688D9A600E46E5A /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				97FA57D12688756D00A868EE /* SecondaryButton.swift */,
+				97FA57CF2688756000A868EE /* PrimarySolidButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
 		97FA5643268722C800A868EE /* APILayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,20 +248,19 @@
 		97FA57CC26886B5800A868EE /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				97FA57D5268875DF00A868EE /* Alert */,
-				97FA57D12688756D00A868EE /* SecondaryButton.swift */,
-				97FA57CF2688756000A868EE /* PrimarySolidButton.swift */,
+				97FA57D5268875DF00A868EE /* Alerts */,
+				97AC80582688D9A600E46E5A /* Buttons */,
 			);
 			path = Components;
 			sourceTree = "<group>";
 		};
-		97FA57D5268875DF00A868EE /* Alert */ = {
+		97FA57D5268875DF00A868EE /* Alerts */ = {
 			isa = PBXGroup;
 			children = (
 				97FA57CD26886B6E00A868EE /* PrimaryAlertView.swift */,
 				97FA57D32688758800A868EE /* PrimaryAlertView.xib */,
 			);
-			path = Alert;
+			path = Alerts;
 			sourceTree = "<group>";
 		};
 		97FA57DC26889DB200A868EE /* Extensions */ = {

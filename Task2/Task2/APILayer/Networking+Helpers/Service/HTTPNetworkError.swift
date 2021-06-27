@@ -7,6 +7,10 @@
 
 import Foundation
 
+
+/** Type of possible erros
+ - **NOTE:** In general descriptions should be localised, but as of now it supposts english only.
+ */
 public enum HTTPNetworkError: Error {
     case success
     case parametersNil
@@ -37,6 +41,8 @@ public enum HTTPNetworkError: Error {
         }
     }
 
+    
+    /// Descriptions, for user's understanding.
     public var errorMessage: String {
         switch self {
         case .success:
@@ -50,6 +56,7 @@ public enum HTTPNetworkError: Error {
         case .other(let message):
             return message
         default:
+            // rest all are not understandable by user so something went wrong is better
             return "Opps!!! Something went wrong"
         }
     }

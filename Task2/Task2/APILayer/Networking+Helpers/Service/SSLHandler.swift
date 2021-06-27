@@ -7,6 +7,8 @@
 
 import Foundation
 
+
+/// Class to to manange ssl pinning and certificate exchange managements, etc
 public final class SSLHandler {
     static private func didReceive(serverTrustChallenge challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
         let customRoot = Bundle.main.certificate(named: "Cert Name") //TODO: Enter name

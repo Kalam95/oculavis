@@ -12,15 +12,13 @@ class ListViewController: BaseViewController {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
-    var viewModel: ListViewModel!
-    private let searchController = UISearchController(searchResultsController: nil)
+    
+    var viewModel: ListViewModel! // viewModel
+    private var searchController: UISearchController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchController.searchResultsUpdater = self
-        self.definesPresentationContext = true
-        self.navigationItem.titleView = searchController.searchBar
-        searchController.hidesNavigationBarDuringPresentation = false
+        
         settingsAtViewDidLoad()
     }
 
@@ -44,7 +42,16 @@ class ListViewController: BaseViewController {
         }
     }
 
+    private func setSearchBar() {
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        self.definesPresentationContext = true
+        self.navigationItem.titleView = searchController.searchBar
+        searchController.hidesNavigationBarDuringPresentation = false
+    }
+
     private func setUPUI() {
+        setSearchBar()
         containerView.backgroundColor = .lightRedColor()
         tableView.registerCell(type: PokemonCell.self)
         tableView.rowHeight = .minRelative(size: 140)
@@ -57,6 +64,7 @@ class ListViewController: BaseViewController {
 
 }
 
+//MARK: Table view data scource and delegate handling
 extension ListViewController: UITableViewDelegate, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {

@@ -7,6 +7,8 @@
 
 import Foundation
 
+///**Note:** I do not know the contract as of now so i just created it to showcase, and hence its not used in thsi app
+/// A generic Error response, on the basis of API contract with frontend and server
 public struct GenericErrorData: Codable {
     let message: String?
     let status: String?

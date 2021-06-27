@@ -7,12 +7,13 @@
 
 import UIKit
 
+/// A Manager for caching images, so that we do not re-download then.
 public class CacheManager {
     public static let shared = CacheManager()
     private let cache: NSCache<NSString, UIImage>
     private init () {
         cache = NSCache()
-        cache.countLimit = 75
+        cache.countLimit = 75// any number to limit the number of cached image
         cache.totalCostLimit = 25 * 1024 * 1024 // 25 MB macx image memory for cache.
     }
 

@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// API response handling on the basis of status received by server.
 public struct HTTPNetworkResponse {
     static func handleNetworkResponse(for response: HTTPURLResponse, data: Data?) -> HTTPNetworkError {
         switch response.statusCode {

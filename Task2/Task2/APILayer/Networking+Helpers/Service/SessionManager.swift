@@ -7,6 +7,8 @@
 
 import Foundation
 
+
+// A calss to showcase session manager as of not they are not requred in thsi proijects
 public final class SessionManager {
     var sessionID: String?
     var formID: String?

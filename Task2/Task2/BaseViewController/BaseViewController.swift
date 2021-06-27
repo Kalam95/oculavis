@@ -7,6 +7,9 @@
 
 import UIKit
 
+
+/// BaseViewContrroller, which contains code related to all the view controllers,
+/// such as common navigation bar settings, or showing and hiding alerts
 class BaseViewController: UIViewController {
 
     override func viewDidLoad() {
