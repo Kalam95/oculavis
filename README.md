@@ -5,7 +5,8 @@ Test Assignment
 ## 1. pokemon_assignment:
 * It contains an assinment(Get Data from API and show list) using *MVVM*. 
 * Since its a small project some of network layer files are not used but created to showcase that how would i do those things if requried for example: SessionManager, SSLHandler.
-* Comments are made on all required places, in general the properties and functions names are self descriptive. 
+* Comments are made on all required places, in general the properties and functions names are self descriptive.
+* I made the project testable easily via mocks using protocols, but the test tasget was not included in the given projject so, i then ignored to write test cases and also the its was a simple assignemnt which d=in general do not required a testing[unit and UI testing]
 
 ## 2. debugging_test_websocket: 
 * Its was an already created project but having number of bugs.
