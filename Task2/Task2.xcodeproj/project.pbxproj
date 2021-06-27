@@ -117,9 +117,9 @@
 				97FA57BD2687330700A868EE /* Utilities+Reusable */,
 				97FA5643268722C800A868EE /* APILayer */,
 				97FA57BE2687335400A868EE /* ListModule */,
+				97FA57DD2688C94D00A868EE /* OnboardingModule */,
+				97FA57DE2688C96600A868EE /* BaseViewController */,
 				4D345DF226726795008FCAD0 /* Main.storyboard */,
-				4D345DF026726795008FCAD0 /* MainViewController.swift */,
-				97FA57D62688768100A868EE /* BaseViewController.swift */,
 				4D345E0826726BBE008FCAD0 /* Support Files */,
 				4D345DFA26726796008FCAD0 /* Info.plist */,
 			);
@@ -264,6 +264,22 @@
 				97FA57C826879AE200A868EE /* UIImageView+Download.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		97FA57DD2688C94D00A868EE /* OnboardingModule */ = {
+			isa = PBXGroup;
+			children = (
+				4D345DF026726795008FCAD0 /* MainViewController.swift */,
+			);
+			path = OnboardingModule;
+			sourceTree = "<group>";
+		};
+		97FA57DE2688C96600A868EE /* BaseViewController */ = {
+			isa = PBXGroup;
+			children = (
+				97FA57D62688768100A868EE /* BaseViewController.swift */,
+			);
+			path = BaseViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
