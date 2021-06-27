@@ -7,21 +7,32 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class MainViewController: BaseViewController {
     
     private static let SEGUE_NAME = "OpenListSegue"
 
     @IBOutlet var textfieldNumber: UITextField!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationController?.navigationBar.barTintColor = .lightRedColor()
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == MainViewController.SEGUE_NAME {
             if let listVC = segue.destination as? ListViewController {
-                listVC.numberOfPokemon = Int(textfieldNumber.text ?? "1")
+                let apiClient = PokemonAPI(networkClient: NetworkClient(baseUrl: AppURL.base.rawValue))
+                let count = Int(textfieldNumber.text ?? "1") ?? 1
+                listVC.viewModel = ListViewModel(apiCleint: apiClient, count: count)
             }
         }
     }
 
     @IBAction func onStartTapped(_ sender: UIButton) {
+        guard Int(textfieldNumber.text ?? "") != nil else {
+            self.showAlert(title: "Alert!!", description: "Please Enter a valid Number", primaryAction: ("OK", nil))
+            return
+        }
         performSegue(withIdentifier: MainViewController.SEGUE_NAME, sender: nil)
     }
 }

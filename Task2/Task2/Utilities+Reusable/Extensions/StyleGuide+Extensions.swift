@@ -7,22 +7,6 @@
 
 import UIKit
 
-extension UITableView {
-    
-    // This can be used as follows:
-    // tableView.registerCell(type: PokemonCell.self)
-    func registerCell(type cellType: UITableViewCell.Type) {
-        let name = String(describing: cellType.self)
-        register(UINib(nibName: name, bundle: nil), forCellReuseIdentifier: name)
-    }
-    
-    // This can be used as follows:
-    // let cell = tableView.dequeueTypedCell(for: indexPath, type: PokemonCell.self)
-    func dequeueTypedCell<T: UITableViewCell>(for indexPath: IndexPath, type cellType: T.Type) -> T {
-        return dequeueReusableCell(withIdentifier: String(describing: cellType.self), for: indexPath) as! T
-    }
-}
-
 extension UIColor {
     
     // This function returns a pre-defined UIColor for all kind of type strings that PokeAPI returns
@@ -115,4 +99,25 @@ extension UIColor {
     }
 }
 
+extension UIColor {
+    static func random() -> UIColor {
+        // generate any random color
+        let red = CGFloat(arc4random_uniform(255) + 1)/255
+        let blue = CGFloat(arc4random_uniform(255) + 1)/255
+        let green = CGFloat(arc4random_uniform(255) + 1)/255
+        return UIColor(red: red, green: blue, blue: green, alpha: 1.0)
+    }
+
+    static func lightRedColor() -> UIColor {
+        UIColor(red: 255/255, green: 151/255, blue: 152/255, alpha: 1)
+    }
+}
+
+extension CGFloat {
+    public static func minRelative(size: CGFloat) -> CGFloat {
+        let ratio = (667/size) // iphone 7 is takken as refrence
+        let relativeSize = (UIScreen.main.bounds.height/ratio)
+        return minimum(relativeSize, size)
+    }
+}
 
