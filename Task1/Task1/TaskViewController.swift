@@ -12,43 +12,50 @@ class TaskViewController: UIViewController {
     
     @IBOutlet var stackQuestionAnswer: UIStackView!
     @IBOutlet var stackWebsocketEcho: UIStackView!
-//    @IBOutlet var viewContent: UIView!
-    @IBOutlet var imageView: UIImageView!
+    
+    
+    @IBOutlet var viewContent: UIView!
     @IBOutlet var labelQuestion: UILabel!
     @IBOutlet var labelAnswer: UILabel!
+    
+    private let imageURL = URL(string: "https://www.wired.com/images_blogs/wiredscience/2012/01/bluemarble.jpg")!
+    
+    private var question: Question?
+    private var answer: Answer?
+    
+    
     @IBOutlet var buttonConnect: UIButton!
     @IBOutlet var buttonDisconnect: UIButton!
     @IBOutlet var textfieldInput: UITextField!
     @IBOutlet var buttonSend: UIButton!
     @IBOutlet var labelMessage: UILabel!
     
-    private var question: Question?
-    private var answer: Answer?
     private let queue = OperationQueue()
-    private var session: URLSession?
-    private var websocketTask: URLSessionWebSocketTask?
-    private let imageURL = URL(string: "https://www.wired.com/images_blogs/wiredscience/2012/01/bluemarble.jpg")!
+    
     private let request: URLRequest = {
         var request = URLRequest(url: URL(string: "ws://echo.websocket.org")!)
         request.timeoutInterval = 10
         return request
     }()
-    private var wsDelegate: WebSocketDelegate?
-
-    deinit {
-        disconnect()
-    }
-
+    
+    private let wsDelegate = WebSocketDelegate()
+    
+    private var session: URLSession?
+    private var websocketTask: URLSessionWebSocketTask?
+    
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
-        textfieldInput.delegate = self
+        super.viewLoaded()
+        
         navigationItem.title = taskName!
+        
         setButtonStates(isEnabled: false)
     }
-
+    
+    
     @IBAction func onSwitchToggled(_ sender: UISwitch) {
         if sender.isOn {
-            stackQuestionAnswer.isHidden = false
+            stackQuestionAnswer.isHidden = true
             stackWebsocketEcho.isHidden = true
             
             updateQuestionAnswer()
@@ -59,6 +66,7 @@ class TaskViewController: UIViewController {
             question = nil
             answer = nil
         }
+        
         labelQuestion.text = question?.text
         labelAnswer.text = answer?.text
     }
@@ -67,57 +75,61 @@ class TaskViewController: UIViewController {
     private func updateQuestionAnswer() {
         question = Question(text: "How are you?")
         answer = Answer(text: "I'm fine, how about you?")
+        
+        answer?.question = question
+        
         if let answer = answer {
             question?.answers.append(answer)
         }
-        downloadImage()
-    }
-
-    private func downloadImage() {
-        let queue = DispatchQueue(label: "ImageFetcher")
-        queue.async { [weak self] in
-            guard let self = self else { return }
+        
+        let queue = DispatchQueue.init(label: "ImageFetcher")
+        queue.async {
             let data = try? Data(contentsOf: self.imageURL)
-            DispatchQueue.main.async { [weak self] in
+            DispatchQueue.main.async {
                 if let data = data {
-                    self?.imageView.image = UIImage(data: data)
+                    let viewImage = UIImageView(frame: CGRect(x: 0, y: 0,
+                                                              width: self.viewContent.frame.width,
+                                                              height: self.viewContent.frame.height))
+                    viewImage.image = UIImage(data: data)
+                    viewImage.contentMode = .scaleAspectFill
+                    self.viewContent.addSubview(viewImage)
                 }
             }
         }
     }
-
+    
+    
+    
+    
     @IBAction func onConnectTapped(_ sender: UIButton) {
         connect()
     }
-
+    
     @IBAction func onDisconnectTapped(_ sender: UIButton) {
         disconnect()
     }
-
+    
     @IBAction func onSendTapped(_ sender: UIButton) {
         if let text = textfieldInput.attributedText {
-            view.endEditing(true)
             DispatchQueue.main.async { [weak self] in
                 self?.sendMessage(text: text.string)
             }
         }
     }
-
+    
     func connect() {
-        wsDelegate = WebSocketDelegate()
-        wsDelegate?.delegate = self
+        wsDelegate.delegate = self
         session = URLSession(configuration: .default, delegate: wsDelegate, delegateQueue: queue)
         websocketTask = session?.webSocketTask(with: request)
         websocketTask?.resume()
     }
-
+    
     func disconnect() {
-        wsDelegate = nil
         websocketTask?.cancel(with: .goingAway, reason: nil)
         websocketTask = nil
         session = nil
     }
-
+    
     func setButtonStates(isEnabled: Bool) {
         DispatchQueue.main.async { [weak self] in
             self?.buttonConnect.isEnabled = !isEnabled
@@ -125,41 +137,40 @@ class TaskViewController: UIViewController {
             self?.buttonSend.isEnabled = isEnabled
         }
     }
-
+    
     func handleSendError(error: Error?) {
         if let error = error {
             print(error)
         }
     }
-
+    
     func handleReceiveError(error: Error?) {
         if let error = error {
             print(error)
         }
     }
-
+    
     func handleText(message: String) {
         labelMessage.text = message
     }
-
+    
     func listenForMessages() {
         websocketTask?.receive(completionHandler: { [weak self] result in
-            DispatchQueue.main.async {[weak self] in
-                self?.onMessageReceived(result: result)
-            }
+            self?.onMessageReceived(result: result)
         })
     }
-
+    
     func sendMessage(text: String) {
         websocketTask?.send(.string(text), completionHandler: { [weak self] error in
             self?.handleSendError(error: error)
         })
     }
-
+    
     func onMessageReceived(result: Result<URLSessionWebSocketTask.Message, Error>) {
         switch result {
         case .failure(let error):
             handleReceiveError(error: error)
+            
         case .success(let message):
             switch message {
             case .string(let text):
@@ -168,26 +179,21 @@ class TaskViewController: UIViewController {
                 fatalError("Received unknown WebSocket message")
             }
         }
-//
-//        listenForMessages()
-    }
-}
-
-extension TaskViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+        
+        listenForMessages()
     }
 }
 
 extension TaskViewController: Delegate {
     func conectionOpened() {
         setButtonStates(isEnabled: true)
+                
         listenForMessages()
     }
     
     func connectionClosed() {
         setButtonStates(isEnabled: false)
+        
         labelMessage.text = nil
     }
 }
@@ -198,7 +204,7 @@ protocol Delegate: AnyObject {
 }
 
 class WebSocketDelegate: NSObject, URLSessionWebSocketDelegate {
-    weak var delegate: Delegate?
+    var delegate: Delegate?
     
     func urlSession(_ session: URLSession, webSocketTask: URLSessionWebSocketTask, didOpenWithProtocol protocol: String?) {
         delegate?.connectionOpened()
@@ -206,21 +212,20 @@ class WebSocketDelegate: NSObject, URLSessionWebSocketDelegate {
     
     func urlSession(_ session: URLSession, webSocketTask: URLSessionWebSocketTask,
                     didCloseWith closeCode: URLSessionWebSocketTask.CloseCode, reason: Data?) {
-        DispatchQueue.main.async {[weak self] in
-            self?.delegate?.connectionClosed()
-        }
+        delegate?.connectionClosed()
     }
 }
 
-struct Answer {
+class Answer {
     var text: String
+    var question: Question?
     
     init(text: String) {
         self.text = text
     }
 }
 
-struct Question {
+class Question {
     let text: String
     var answers: [Answer] = []
     

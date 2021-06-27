@@ -21,11 +21,7 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func onTaskButtonTaped(_ sender: UIButton) {
-        performSegue(withIdentifier: MainViewController.SEGUE_NAME, sender: sender.titleLabel?.text)
-    }
-    
-    override func performSegue(withIdentifier identifier: String, sender: Any?) {
-        super.performSegue(withIdentifier: identifier, sender: sender)
+        performSegue(withIdentifier: MainViewController.SEGUE_NAME, sender: sender.titleLabel)
     }
 }
 

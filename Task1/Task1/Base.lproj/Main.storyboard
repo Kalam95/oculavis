@@ -20,7 +20,7 @@
                                 <rect key="frame" x="185.5" y="460" width="43" height="30"/>
                                 <state key="normal" title="Task 1"/>
                                 <connections>
-                                    <action selector="onTaskButtonTaped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MSf-ka-eDl"/>
+                                    <action selector="onTaskButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UtW-Yl-Zbf"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -58,28 +58,29 @@
             </objects>
             <point key="canvasLocation" x="131.8840579710145" y="114.50892857142857"/>
         </scene>
-        <!--Task View Controller-->
+        <!--View Controller-->
         <scene sceneID="u6Y-A4-hJ4">
             <objects>
-                <viewController id="wZl-1G-F3F" customClass="TaskViewController" customModule="Task1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="wZl-1G-F3F" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ut5-bZ-zn8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2dK-Fk-Ea7">
-                                <rect key="frame" x="0.0" y="219" width="414" height="643"/>
+                                <rect key="frame" x="87" y="219" width="240" height="643"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="myF-73-PGC">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="543"/>
-                                    </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="250" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HaA-0o-iy5">
-                                        <rect key="frame" x="0.0" y="543" width="414" height="50"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SbO-Gb-76K">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="602"/>
+                                        <color key="backgroundColor" systemColor="labelColor"/>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HaA-0o-iy5">
+                                        <rect key="frame" x="0.0" y="602" width="240" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" systemColor="systemBackgroundColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qxq-LS-fKo">
-                                        <rect key="frame" x="0.0" y="593" width="414" height="50"/>
+                                        <rect key="frame" x="0.0" y="602" width="240" height="41"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" systemColor="systemBackgroundColor"/>
                                         <nil key="highlightedColor"/>
@@ -93,14 +94,14 @@
                                         <rect key="frame" x="0.0" y="0.0" width="350" height="30"/>
                                         <state key="normal" title="Connect"/>
                                         <connections>
-                                            <action selector="onConnectTapped:" destination="wZl-1G-F3F" eventType="touchUpInside" id="byM-sy-04f"/>
+                                            <action selector="onConnectTapped:" destination="wZl-1G-F3F" eventType="touchUpInside" id="b2e-z1-JNE"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELU-HT-UsA">
                                         <rect key="frame" x="0.0" y="42" width="350" height="30"/>
                                         <state key="normal" title="Disconnect"/>
                                         <connections>
-                                            <action selector="onDisconnectTapped:" destination="wZl-1G-F3F" eventType="touchUpInside" id="wd9-qS-6Cd"/>
+                                            <action selector="onDisconnectTapped:" destination="wZl-1G-F3F" eventType="touchUpInside" id="sPo-JM-EbU"/>
                                         </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LQ7-Xm-boK">
@@ -112,7 +113,7 @@
                                         <rect key="frame" x="0.0" y="130" width="350" height="30"/>
                                         <state key="normal" title="Send"/>
                                         <connections>
-                                            <action selector="onSendTapped:" destination="wZl-1G-F3F" eventType="touchUpInside" id="Jh6-Mz-cye"/>
+                                            <action selector="onSendTapped:" destination="wZl-1G-F3F" eventType="touchUpInside" id="4y7-Dy-9fM"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Response" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gfo-F0-YP2">
@@ -135,22 +136,20 @@
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="tu2-pu-dyH">
                                 <rect key="frame" x="182.5" y="138" width="51" height="31"/>
                                 <connections>
-                                    <action selector="onSwitchToggled:" destination="wZl-1G-F3F" eventType="valueChanged" id="Dea-x8-sy5"/>
+                                    <action selector="onSwitchToggled:" destination="wZl-1G-F3F" eventType="valueChanged" id="Yf4-6Z-ZeO"/>
                                 </connections>
                             </switch>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="S70-TY-Nyp"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="labelColor"/>
                         <constraints>
-                            <constraint firstItem="2dK-Fk-Ea7" firstAttribute="bottom" secondItem="S70-TY-Nyp" secondAttribute="bottom" placeholder="YES" id="9BV-s2-UQm"/>
+                            <constraint firstItem="2dK-Fk-Ea7" firstAttribute="bottom" secondItem="S70-TY-Nyp" secondAttribute="bottom" id="9BV-s2-UQm"/>
                             <constraint firstItem="FeD-ef-uJN" firstAttribute="trailing" secondItem="S70-TY-Nyp" secondAttribute="trailing" constant="-32" id="Dcd-Fu-Ci1"/>
                             <constraint firstItem="FeD-ef-uJN" firstAttribute="top" secondItem="tu2-pu-dyH" secondAttribute="bottom" constant="50" id="Fh6-pa-zq9"/>
-                            <constraint firstItem="S70-TY-Nyp" firstAttribute="trailing" secondItem="2dK-Fk-Ea7" secondAttribute="trailing" id="Iwp-pm-Yr9"/>
                             <constraint firstItem="tu2-pu-dyH" firstAttribute="top" secondItem="S70-TY-Nyp" secondAttribute="top" constant="50" id="KBv-pY-YbR"/>
                             <constraint firstItem="FeD-ef-uJN" firstAttribute="bottom" secondItem="S70-TY-Nyp" secondAttribute="bottom" id="Mms-kV-QlK"/>
                             <constraint firstItem="FeD-ef-uJN" firstAttribute="leading" secondItem="S70-TY-Nyp" secondAttribute="leading" constant="32" id="S05-q3-qHe"/>
                             <constraint firstItem="tu2-pu-dyH" firstAttribute="centerX" secondItem="S70-TY-Nyp" secondAttribute="centerX" id="UsD-En-3UY"/>
-                            <constraint firstItem="2dK-Fk-Ea7" firstAttribute="leading" secondItem="S70-TY-Nyp" secondAttribute="leading" id="WYc-gD-Gnz"/>
                             <constraint firstItem="2dK-Fk-Ea7" firstAttribute="centerX" secondItem="S70-TY-Nyp" secondAttribute="centerX" id="fxh-kL-hff"/>
                             <constraint firstItem="2dK-Fk-Ea7" firstAttribute="top" secondItem="tu2-pu-dyH" secondAttribute="bottom" constant="50" id="pHc-24-oij"/>
                         </constraints>
@@ -160,13 +159,13 @@
                         <outlet property="buttonConnect" destination="pOR-UE-tJI" id="u52-9w-zF4"/>
                         <outlet property="buttonDisconnect" destination="ELU-HT-UsA" id="cAZ-ei-hka"/>
                         <outlet property="buttonSend" destination="77n-Zc-DYi" id="hol-Nf-jFK"/>
-                        <outlet property="imageView" destination="myF-73-PGC" id="cz0-C6-jAw"/>
                         <outlet property="labelAnswer" destination="qxq-LS-fKo" id="KLi-c1-je5"/>
                         <outlet property="labelMessage" destination="VRb-Au-SMf" id="sXw-ms-kvL"/>
                         <outlet property="labelQuestion" destination="HaA-0o-iy5" id="70b-5P-7GT"/>
                         <outlet property="stackQuestionAnswer" destination="2dK-Fk-Ea7" id="gtq-eG-Gau"/>
                         <outlet property="stackWebsocketEcho" destination="FeD-ef-uJN" id="ZaR-Lm-LnK"/>
                         <outlet property="textfieldInput" destination="LQ7-Xm-boK" id="lWl-tu-16N"/>
+                        <outlet property="viewContent" destination="SbO-Gb-76K" id="Xoj-61-e2U"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3mn-vT-jVi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -175,6 +174,9 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
