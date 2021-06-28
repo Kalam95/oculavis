@@ -27,4 +27,4 @@ Test Assignment
 
 ### Skipped Things(can be imporved)
 * Code restructing, right now everything is in same call
-* Proper laering of network and locics and data models
+* Proper layering of network and locics and data models
