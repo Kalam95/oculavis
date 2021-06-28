@@ -8,7 +8,8 @@ Test Assignment
 * Comments are made on all required places, in general the properties and functions names are self descriptive.
 * I made the project testable easily via mocks using protocols, but the test tasget was not included in the given projject so, i then ignored to write test cases and also the its was a simple assignemnt which in general do not require any testing[unit and UI testing]
 
-## 2. pokemon_assignment_swiftUI: 
+## 2. pokemon_assignment_swiftUI:
+* It has different and simple Ui
 * pokemon_assignemnt project with swift and combine.
 * network layer and other things are same, just views and publishers are using combine + SwiftUI. Comments were not included as swift ui is self descriptive. 
 
