@@ -1,14 +1,19 @@
 # oculavis
 Test Assignment 
- **This repo contains 2 sub branches**
+ **This repo contains 3 sub branches**
 
 ## 1. pokemon_assignment:
-* It contains an assinment(Get Data from API and show list) using *MVVM*. 
+* It contains an assinment(Get Data from API and show list) using **MVVM**. 
 * Since its a small project some of network layer files are not used but created to showcase that how would i do those things if requried for example: SessionManager, SSLHandler.
 * Comments are made on all required places, in general the properties and functions names are self descriptive.
-* I made the project testable easily via mocks using protocols, but the test tasget was not included in the given projject so, i then ignored to write test cases and also the its was a simple assignemnt which d=in general do not required a testing[unit and UI testing]
+* I made the project testable easily via mocks using protocols, but the test tasget was not included in the given projject so, i then ignored to write test cases and also the its was a simple assignemnt which in general do not require any testing[unit and UI testing]
 
-## 2. debugging_test_websocket: 
+## 2. pokemon_assignment_swiftUI:
+* It has different and simple Ui
+* pokemon_assignemnt project with swift and combine.
+* network layer and other things are same, just views and publishers are using combine + SwiftUI. Comments were not included as swift ui is self descriptive. 
+
+## 3. debugging_test_websocket: 
 * Its was an already created project but having number of bugs.
 * I have resolved, crashes, duplicay, retain cycles within the code, UI issues, other memory leaks. I used profiling(alloocations and leacks from instruments), Memory graph from Xcode and UISnapshot or ViewHirarchy via XCode tools.
 * UI issues in image view for earth image(gfetting added again and again with wrong constraints)-> moved image to niv and removed contentview 
@@ -27,4 +32,4 @@ Test Assignment
 
 ### Skipped Things(can be imporved)
 * Code restructing, right now everything is in same call
-* Proper laering of network and locics and data models
+* Proper layering of network and locics and data models
